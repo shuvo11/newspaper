@@ -40,7 +40,7 @@
                 <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="{{route ('Category')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Add-Category</span></a>
                         </li>
-                        <li><a class="d-flex align-items-center" href="app-invoice-preview.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Preview</span></a>
+                        <li><a class="d-flex align-items-center" href="{{route ('all-Category')}}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">All-Category</span></a>
                         </li>
                         <li><a class="d-flex align-items-center" href="app-invoice-edit.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">Edit</span></a>
                         </li>

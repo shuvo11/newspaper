@@ -32,4 +32,5 @@ Route::get('/contact', [FontviewConteoller::class, 'contact']);
 
 Route::get('/admin', [LayoutController::class, 'index']);
 Route::get('/Category', [CategoriesController::class, 'create'])->name('Category');
+Route::get('/all-Category', [CategoriesController::class, 'index'])->name('all-Category');
 Route::post('/save-category', [CategoriesController::class, 'saveCategory']);

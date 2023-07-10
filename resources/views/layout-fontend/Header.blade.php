@@ -70,7 +70,7 @@
                         
                       
                        
-                          <a class="nav-link" href="{{asset('/')}}">{{ $Categorys->name }}</a>
+                          <a class="nav-link" href="{{asset('/')}}">{{ $Categorys->category_name }}</a>
 
                       
                         </li>
