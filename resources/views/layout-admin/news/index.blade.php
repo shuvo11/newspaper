@@ -46,33 +46,41 @@
                                     <thead>
                                         <tr>   
                                              <th>ID </th>
-                                            <th>Category name </th>
-                                            <th>Category description</th>
-                                            <th>Status</th>
+                                            <th>News_title</th>
+                                            <th>News Short Description</th>
+                                            <th>News Description</th>
+                                            <th>News Media</th>
+                                            <th>hit_count</th>
+                                            <th>latest_news</th>
                                             <th>publication_status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($allcategorys as $values)
+                                    @foreach($allnews as $allnewsshow)
                                         <tr>
-                                        <td>{{$values->id}}</td>
-                                            <td>{{$values->category_name}}</td>
-                                            <td>{{$values->category_description}}</td>
-                                            <td>{{$values->publication_status}}
+                                        <td>{{$allnewsshow->id}}</td>
+                                            <td>{{$allnewsshow->news_title}}</td>
+                                            <td><p>{{$allnewsshow->news_short_description}}</p></td>
+                                            <td><p>{{$allnewsshow->news_description}}</p></td>
+                                            <td><img src="{{URL::asset($allnewsshow->news_media)}}" width="100px" height="100px"></td>
+                                           
+
+                                            <td>{{$allnewsshow->hit_count}}</td>
+                                            <td>{{$allnewsshow->publication_status}}
                                           
                                             </td>
                                             <td>
-                                                    @if($values->publication_status == 1)
-                                              <a href="{{ route ('Category.publish', $values->id) }}"><button type="submit" class="btn btn-sm btn-success">publish</button></a>
+                                                    @if($allnewsshow->publication_status == 1)
+                                              <a href="{{ route ('Category.publish', $allnewsshow->id) }}"><button type="submit" class="btn btn-sm btn-success">publish</button></a>
                                                   @else
-                                                  <a href="{{ route ('Category.unpublish', $values->id) }}"><button type="submit" class="btn btn-sm btn-danger">unpublish</button></a>
+                                                  <a href="{{ route ('Category.unpublish', $allnewsshow->id) }}"><button type="submit" class="btn btn-sm btn-danger">unpublish</button></a>
                                                    @endif
                                                     </td>
           
                                             <td>
-                                            <a href="{{'edit-category/'.$values->id}}"><button type="button" class="btn btn-relief-success">Edit</button></a>
-                                            <a href="{{'delete-category/'.$values->id}}"><button type="button" class="btn btn-relief-success">Delete</button></a>
+                                            <a href="{{'edit-news/'.$allnewsshow->id}}"><button type="button" class="btn btn-relief-success">Edit</button></a>
+                                            <a href="{{'edit-news/'.$allnewsshow->id}}"><button type="button" class="btn btn-relief-success">Delete</button></a>
                                             </td>
                                         </tr>
                                         <tr>

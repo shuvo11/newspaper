@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\FontviewConteoller;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +35,15 @@ Route::get('/admin', [LayoutController::class, 'index']);
 Route::get('/Category', [CategoriesController::class, 'create'])->name('Category');
 Route::get('/all-Category', [CategoriesController::class, 'index'])->name('all-Category');
 Route::post('/save-category', [CategoriesController::class, 'saveCategory']);
+Route::get('/Category.publish/{id}', [CategoriesController::class, 'publish'])->name('Category.publish');
+Route::get('/Category.unpublish/{id}', [CategoriesController::class, 'unpublish'])->name('Category.unpublish');
+Route::get('/edit-category/{id}', [CategoriesController::class, 'editCategory']);
+Route::post('/update-category', [CategoriesController::class, 'updateCategory']);
+Route::get('/delete-category/{id}', [CategoriesController::class, 'destroy']);
+
+
+Route::get('/add-news', [NewsController::class, 'create'])->name('add-news');
+Route::post('/Save-news', [NewsController::class, 'store'])->name('Save-news');
+Route::get('/all-news', [NewsController::class, 'index'])->name('all-news');
+Route::get('/edit-news/{id}', [NewsController::class, 'edit']);
+Route::post('/update-news', [NewsController::class, 'update']);

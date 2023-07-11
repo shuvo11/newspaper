@@ -15,9 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-     
-      
-        return view('layout-admin.allcategory');
+        $categoeys = DB::table('category')->get();
+       return view('layout-admin.allcategory',['allcategorys' => $categoeys]);
     }
 
     /**
@@ -52,7 +51,7 @@ class CategoriesController extends Controller
         else{
                 DB::table('category')->insert($data);
                 Session::put('message','Category added successfully!');
-               return redirect('/view-category');
+               return redirect('/all-Category');
         }
     }
  
@@ -60,106 +59,67 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function editCategory($id)
     {
-        $category = Category::findOrFail($id);
-       
-      
-    return view('Backendlayout.category.edit',compact('category','id'));
-       
+          $categoey_info = DB::table('category')
+                ->where('id',$id)
+                ->first();
+        
+            return view('layout-admin.edit_category',['category_info' => $categoey_info]);
+          
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
 
-            $request->validate([
-                'name' => 'required',
-                'description' => 'required',
-                
-            ]);
-            
-
-
-           DB::table('categories')
-                ->where('id',$id)
-                ->update([
-                    'name' => $request->name,
-                    'description' => $request->description,
-                ]);
-
-            
-            return redirect('/index')
-            ->with('success','Category updated');
-       
-    }
+     public function updateCategory(Request $request)
+     {
+         $id=$request->id;
+         $categoryData=Array();
+         $categoryData['category_name']=$request->category_name;
+         $categoryData['category_description']=$request->category_description;
+         $categoryData['publication_status']=$request->publication_status;
+         DB::table('category')
+                 ->where('id',$id)
+                 ->update($categoryData);
+          return redirect('/all-Category');
+         
+     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        DB::table('categories')->where('id',$id)->delete();
+        DB::table('category')->where('id',$id)->delete();
 
-        return redirect('/index')
+        return redirect('/all-Category')
             ->with('success','Country deleted');
     }
-
-
-
-
-
-    // public function publish($id)
-    // {
-       
-    //    $data = Category::find($id)->update(['published' => false]);
-
-    //     // DB::table('categories')
-    //     // ->where('id',$id)
-    //     // ->updateOrInsert(['published' => '1']);
-
-    //     return redirect('/index')->with('success','Category publish');
-    // }
-    
-
-    // public function unpublish($id)
-    // {
-       
-    //     $data = Category::find($id)->update(['published' => true]);
-
-    //     // DB::table('categories')
-    //     // ->where('id',$id)
-    //     // ->updateOrInsert(['published' => '1']);
-
-    //     // dd($data);
-    //     return redirect('/index')->with('success','Category unpublish');
-    // }
 
 
     public function publish($id)
     {
        
-        DB::table('categories')
+        DB::table('category')
         ->where('id',$id)
-        ->update(['published' => 0]);
-        return redirect('/index')->with('success', 'Category published successfully.');
+        ->update(['publication_status' => 0]);
+        return redirect('/all-Category')->with('success', 'Category published successfully.');
     }
 
     public function unpublish($id)
     {
-        DB::table('categories')
+        DB::table('category')
         ->where('id',$id)
-        ->update(['published' => 1]);
-        return redirect('/index')->with('success', 'Category published successfully.');
+        ->update(['publication_status' => 1]);
+        return redirect('/all-Category')->with('success', 'Category published successfully.');
     }
 
 
 
 
-
-
+ 
 
 
 

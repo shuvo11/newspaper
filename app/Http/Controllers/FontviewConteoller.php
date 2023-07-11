@@ -13,7 +13,7 @@ class FontviewConteoller extends Controller
     public function home(){
     
         $Category = DB::table('category')
-     
+        ->where('publication_status',1)
         ->get();
         return view('layout-fontend.Home',['Category' => $Category]);
     }
