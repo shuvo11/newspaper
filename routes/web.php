@@ -47,3 +47,6 @@ Route::post('/Save-news', [NewsController::class, 'store'])->name('Save-news');
 Route::get('/all-news', [NewsController::class, 'index'])->name('all-news');
 Route::get('/edit-news/{id}', [NewsController::class, 'edit']);
 Route::post('/update-news', [NewsController::class, 'update']);
+Route::get('/delete-news/{id}', [NewsController::class, 'destroy']);
+Route::get('/news.publish/{id}', [NewsController::class, 'publishnews'])->name('news.publish');
+Route::get('/news.unpublish/{id}', [NewsController::class, 'unpublishnews'])->name('news.unpublish');

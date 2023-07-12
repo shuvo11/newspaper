@@ -45,22 +45,12 @@
                                                         <label class="col-form-label" for="first-name"> News Title</label>
                                                     </div>
                                                     <div class="col-sm-9">
-                                                    <input type="text" value="{{$news_info->news_title}}" class="form-control" id="name" name="category_name" required placeholder="Category Name">
+                                                    <input type="text" value="{{$news_info->news_title}}" class="form-control" id="name" name="news_title" required placeholder="Category Name">
                                                       <input type="hidden" value="{{$news_info->id}}" class="form-control" id="name" name="id" required placeholder="Category Name">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="mb-1 row">
-                                                    <div class="col-sm-3">
-                                                        <label class="col-form-label" for="first-name"> Category</label>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                    <input type="text" value="{{$news_info->category_id}}" class="form-control" id="name" name="category_id" required placeholder="Category Name">
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                  
                                             <div class="col-12">
                                                 <div class="mb-1 row">
                                                     <div class="col-sm-3">

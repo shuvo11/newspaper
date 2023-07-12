@@ -85,7 +85,7 @@ class NewsController extends Controller
         $news_info = DB::table('news')
         ->where('id',$id)
         ->first();
-
+      
     return view('layout-admin.news.edit',['news_info' => $news_info]);
     }
 
@@ -118,8 +118,29 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        DB::table('news')->where('id',$id)->delete();
+             return redirect('/all-news')
+            ->with('success','Country deleted');
     }
+
+    public function publishnews($id)
+    {
+       
+        DB::table('news')
+        ->where('id',$id)
+        ->update(['publication_status' => 0]);
+        return redirect('/all-news')->with('success', 'Category published successfully.');
+    }
+
+    public function unpublishnews($id)
+    {
+        DB::table('news')
+        ->where('id',$id)
+        ->update(['publication_status' => 1]);
+        return redirect('/all-news')->with('success', 'Category published successfully.');
+    }
+
+
 }
