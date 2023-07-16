@@ -15,8 +15,27 @@ class FontviewConteoller extends Controller
         $Category = DB::table('category')
         ->where('publication_status',1)
         ->get();
-        return view('layout-fontend.Home',['Category' => $Category]);
+
+        $Latest_news = DB::table('news')
+        ->where('publication_status',1)
+        ->orderBy('id', 'desc')
+        ->limit(3)
+        ->get(); 
+
+        $Last_news = DB::table('news')
+        ->join('category', 'news.category_id', '=', 'category.id')
+        ->select('news.*', 'category.category_name')
+        ->where('news.publication_status',1)
+        ->orderBy('news.id', 'desc')
+        ->limit(1)
+        ->first(); 
+        
+        return view('layout-fontend.Home')
+                ->with('Category',$Category)
+                ->with('Latest_news',$Latest_news)
+               ->with('Last_news',$Last_news);
     }
+
 
     public  function travel(){
         $Category = DB::table('categories')->get();
